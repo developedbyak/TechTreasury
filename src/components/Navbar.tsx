@@ -20,7 +20,7 @@ const Navbar = () => {
                             <div className="ml-4 flex items-center lg:ml-0">
                                 <Link href="/">
                                     <Image
-                                        src="/assets/images/innovation-logo.png"
+                                        src="/assets/images/home.png"
                                         alt="logo"
                                         width={40}
                                         height={40}

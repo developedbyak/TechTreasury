@@ -14,9 +14,10 @@ import { Separator } from "./ui/separator";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
+import Image from "next/image";
 
 const Cart = () => {
-    const itemCount = 1;
+    const itemCount = 0;
     const fee = 1;
 
     return (
@@ -74,7 +75,33 @@ const Cart = () => {
                         </div>
                     </>
                 ) : (
-                    <div>hi</div>
+                    <div className="flex h-full flex-col items-center justify-center space-y-1">
+                        <div
+                            aria-hidden="true"
+                            className=" relative mb-4 h-60 w-60 text-muted-foreground"
+                        >
+                            <Image
+                                src="/empty-cart.webp"
+                                fill
+                                alt="cart-empty-state"
+                            />
+                        </div>
+                        <div className=" text-md font-semibold">
+                            Your cart is empty!
+                        </div>
+                        <SheetTrigger asChild>
+                            <Link
+                                href="/products"
+                                className={buttonVariants({
+                                    variant: "link",
+                                    size: "sm",
+                                    className: "text-sm text-muted-foreground",
+                                })}
+                            >
+                                Click here to add some items
+                            </Link>
+                        </SheetTrigger>
+                    </div>
                 )}
             </SheetContent>
         </Sheet>
