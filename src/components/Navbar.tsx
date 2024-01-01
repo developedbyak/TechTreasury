@@ -5,6 +5,7 @@ import Image from "next/image";
 import NavItems from "./NavItems";
 import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
+import Cart from "./Cart";
 
 const Navbar = () => {
     const user = null;
@@ -82,6 +83,10 @@ const Navbar = () => {
                                             />
                                         </div>
                                     )}
+
+                                    <div className="ml-4 flow-root lg:ml-6">
+                                        <Cart />
+                                    </div>
                                 </div>
                             </div>
                         </div>
