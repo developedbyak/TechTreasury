@@ -1,7 +1,10 @@
 import dotenv from "dotenv";
 import path from "path";
+import type { Payload } from "payload";
 import payload from "payload";
 import type { InitOptions } from "payload/config";
+
+import { seed as seedData } from "./seed";
 
 dotenv.config({
     path: path.resolve(__dirname, "../.env"),
@@ -18,9 +21,13 @@ if (!cached) {
 
 interface Args {
     initOptions?: Partial<InitOptions>;
+    seed?: boolean;
 }
 
-export const getPayloadClient = async ({ initOptions }: Args = {}) => {
+export const getPayloadClient = async ({
+    initOptions,
+    seed,
+}: Args = {}): Promise<Payload> => {
     if (!process.env.PAYLOAD_SECRET) {
         throw new Error("PAYLOAD_SECRET is missing");
     }
@@ -29,7 +36,7 @@ export const getPayloadClient = async ({ initOptions }: Args = {}) => {
         return cached.client;
     }
 
-    if (cached.promise) {
+    if (!cached.promise) {
         cached.promise = payload.init({
             secret: process.env.PAYLOAD_SECRET,
             local: initOptions?.express ? false : true,
