@@ -4,11 +4,28 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+    AuthCredentialsValidator,
+    TAuthCredentialsValidator,
+} from "@/lib/validators/account-credentials-validator";
 
 const Page = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<TAuthCredentialsValidator>({
+        resolver: zodResolver(AuthCredentialsValidator),
+    });
+
+    const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
+        // send data to the server
+    };
+
     return (
         <>
             <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
@@ -31,23 +48,27 @@ const Page = () => {
                     </div>
 
                     <div className="grid gap-6">
-                        <form>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="grid gap-2">
                                 <div className="grid gap-2 py-2">
                                     <Label htmlFor="email">Email</Label>
                                     <Input
+                                        {...register("email")}
                                         placeholder="you@example.com"
                                         className={cn({
-                                            "focus-visible:ring-red-500": true,
+                                            "focus-visible:ring-red-500":
+                                                errors.email,
                                         })}
                                     />
                                 </div>
                                 <div className="grid gap-1 py-2">
                                     <Label htmlFor="password">Password</Label>
                                     <Input
+                                        {...register("password")}
                                         placeholder="password"
                                         className={cn({
-                                            "focus-visible:ring-red-500": true,
+                                            "focus-visible:ring-red-500":
+                                                errors.password,
                                         })}
                                     />
                                 </div>
