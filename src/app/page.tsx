@@ -59,7 +59,7 @@ export default function Home() {
                             className="flex items-center gap-2"
                         >
                             Our Quality Promise{" "}
-                            <MoveRight className=" w-[70%] h-[70%]" />
+                            <MoveRight className=" w-[70%] h-[70%] hidden md:flex" />
                         </Button>
                     </div>
                 </div>
