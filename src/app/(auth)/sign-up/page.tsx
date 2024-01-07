@@ -69,6 +69,7 @@ const Page = () => {
                                     <Label htmlFor="password">Password</Label>
                                     <Input
                                         {...register("password")}
+                                        type="password"
                                         placeholder="password"
                                         className={cn({
                                             "focus-visible:ring-red-500":
