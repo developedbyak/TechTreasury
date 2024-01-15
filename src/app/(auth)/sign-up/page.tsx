@@ -59,7 +59,7 @@ const Page = () => {
                 <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                     <div className="flex flex-col items-center spcae-y-2 text-center">
                         <Image
-                            src="/sign-up-logo.png"
+                            src="/sign-up-welcome.png"
                             alt="logo"
                             width={150}
                             height={150}
