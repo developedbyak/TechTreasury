@@ -15,9 +15,14 @@ import {
 import { trpc } from "@/trpc/client";
 import { toast } from "sonner";
 import { ZodError } from "zod";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Page = () => {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const isSeller = searchParams.get("as") === "seller";
+    const origin = searchParams.get("origin");
+
     const {
         register,
         handleSubmit,
@@ -25,8 +30,6 @@ const Page = () => {
     } = useForm<TAuthCredentialsValidator>({
         resolver: zodResolver(AuthCredentialsValidator),
     });
-
-    const router = useRouter();
 
     const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
         onError: (err) => {
