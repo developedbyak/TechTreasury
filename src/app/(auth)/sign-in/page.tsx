@@ -66,12 +66,20 @@ const Page = () => {
                             className=" object-cover"
                         />
                         <h1 className="text-xl font-bold">
-                            Create an account.
+                            Sign in to your account.
                         </h1>
                         <p className="w-[80%] text-sm">
-                            Welcome to TechTreasury. Let&apos;s create your
+                            Welcome to TechTreasury. Let&apos;s login to your
                             account
                         </p>
+                        <Link
+                            href="/sign-up"
+                            className={buttonVariants({
+                                variant: "link",
+                            })}
+                        >
+                            Don&apos;t have an account? Sign-up
+                        </Link>
                     </div>
 
                     <div className="grid gap-6">
@@ -111,17 +119,23 @@ const Page = () => {
                                     )}
                                 </div>
 
-                                <Button>Sign up</Button>
+                                <Button>Sign in</Button>
                             </div>
                         </form>
-                        <Link
-                            href="/sign-in"
-                            className={buttonVariants({
-                                variant: "link",
-                            })}
-                        >
-                            Already have an account? Sign-in
-                        </Link>
+
+                        <div className=" relative">
+                            <div
+                                aria-hidden="true"
+                                className=" absolute inset-0 flex items-center"
+                            >
+                                <span className="w-full border-t" />
+                            </div>
+                            <div className=" relative flex justify-center text-xs uppercase">
+                                <span className=" bg-background px-2 text-muted-foreground ">
+                                    or
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
