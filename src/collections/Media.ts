@@ -25,22 +25,22 @@ export const Media: CollectionConfig = {
             },
         ],
     },
-    //   access: {
-    //     read: async ({ req }) => {
-    //       const referer = req.headers.referer
+    access: {
+        read: async ({ req }) => {
+            const referer = req.headers.referer;
 
-    //       if (!req.user || !referer?.includes('sell')) {
-    //         return true
-    //       }
+            if (!req.user || !referer?.includes("sell")) {
+                return true;
+            }
 
-    //       return await isAdminOrHasAccessToImages()({ req })
-    //     },
-    //     delete: isAdminOrHasAccessToImages(),
-    //     update: isAdminOrHasAccessToImages(),
-    //   },
-    //   admin: {
-    //     hidden: ({ user }) => user.role !== 'admin',
-    //   },
+            return await isAdminOrHasAccessToImages()({ req });
+        },
+        delete: isAdminOrHasAccessToImages(),
+        update: isAdminOrHasAccessToImages(),
+    },
+    admin: {
+        hidden: ({ user }) => user.role !== "admin",
+    },
     upload: {
         staticURL: "/media",
         staticDir: "media",
