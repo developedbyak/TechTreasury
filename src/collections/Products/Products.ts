@@ -47,14 +47,14 @@ export const Products: CollectionConfig = {
                 value,
             })),
         },
-        // {
-        //     name: "product_files",
-        //     label: "Product_file(s)",
-        //     type: "relationship",
-        //     required: true,
-        //     relationTo: "product_files",
-        //     hasMany: false,
-        // },
+        {
+            name: "product_files",
+            label: "Product_file(s)",
+            type: "relationship",
+            required: true,
+            relationTo: "product_files",
+            hasMany: false,
+        },
         {
             name: "approvedForSale",
             label: "Product Status",
