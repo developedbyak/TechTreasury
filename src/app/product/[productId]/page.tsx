@@ -1,5 +1,7 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import { getPayloadClient } from "@/get-payload";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface PageProps {
     params: {
@@ -12,7 +14,28 @@ const BREADCRUMBS = [
     { id: 2, name: "Products", href: "/products" },
 ];
 
-const Page = ({ params }: PageProps) => {
+const Page = async ({ params }: PageProps) => {
+    const { productId } = params;
+
+    const payload = await getPayloadClient();
+
+    const { docs: products } = await payload.find({
+        collection: "products",
+        limit: 1,
+        where: {
+            id: {
+                equals: productId,
+            },
+            approvedForSale: {
+                equals: "approved",
+            },
+        },
+    });
+
+    const [product] = products;
+
+    if (!product) return notFound();
+
     return (
         <MaxWidthWrapper className="bg-white">
             <div className="bg-white">
@@ -29,10 +52,24 @@ const Page = ({ params }: PageProps) => {
                                         >
                                             {breadcrumb.name}
                                         </Link>
+                                        {i !== BREADCRUMBS.length - 1 ? (
+                                            <svg
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                aria-hidden="true"
+                                                className="ml-2 h-5 w-5 flex-shrink-0 text-gray-300"
+                                            >
+                                                <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                                            </svg>
+                                        ) : null}
                                     </div>
                                 </li>
                             ))}
                         </ol>
+
+                        <div className="mt-4">
+                            <h1>{product.name}</h1>
+                        </div>
                     </div>
                 </div>
             </div>
