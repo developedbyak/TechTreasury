@@ -6,7 +6,7 @@ import Providers from "@/components/Providers";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-    title: "TechTreasury",
+    title: "EcoFY",
     description:
         "TechTreasury - A Modern Fullstack E-Commerce Marketplace for Digital Products",
 };

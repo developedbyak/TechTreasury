@@ -1,11 +1,14 @@
-import { QueryValidator } from "../lib/validators/query-validator";
+import { z } from "zod";
 import { authRouter } from "./auth-router";
 import { publicProcedure, router } from "./trpc";
-import { z } from "zod";
+import { QueryValidator } from "../lib/validators/query-validator";
 import { getPayloadClient } from "../get-payload";
+import { paymentRouter } from "./payment-router";
 
 export const appRouter = router({
     auth: authRouter,
+    payment: paymentRouter,
+
     getInfiniteProducts: publicProcedure
         .input(
             z.object({
@@ -27,6 +30,7 @@ export const appRouter = router({
                     equals: value,
                 };
             });
+
             const page = cursor || 1;
 
             const {
