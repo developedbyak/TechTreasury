@@ -47,7 +47,7 @@ export default function Home() {
                         <span className="text-green-600">digital assets</span>.
                     </h1>
                     <p className="mt-6 max-w-prose text-muted-foreground font-semibold text-sm">
-                        Welcome to TechTreasury. Every asset on our platform is
+                        Welcome to EcoFY. Every asset on our platform is
                         verified by our team to ensure our highest quality
                         standards.
                     </p>
