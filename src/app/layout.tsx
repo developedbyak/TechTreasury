@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import { cn, constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import { Toaster } from "sonner";
+import Footer from "@/components/Footer";
 
-export const metadata: Metadata = {
-    title: "EcoFY",
-    description:
-        "TechTreasury - A Modern Fullstack E-Commerce Marketplace for Digital Products",
-};
+
+export const metadata = constructMetadata()
 
 export default function RootLayout({
     children,
@@ -23,6 +21,7 @@ export default function RootLayout({
                     <Providers>
                         <Navbar />
                         <div className=" flex-grow flex-1">{children}</div>
+                        <Footer />
                     </Providers>
                 </main>
 
